@@ -4,8 +4,8 @@
 
 <template>
   <NuxtLayout>
-    <div>
-      Test
-    </div>
+    <section>
+      <DisplayComponents />
+    </section>
   </NuxtLayout>
 </template>
