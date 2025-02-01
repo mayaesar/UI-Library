@@ -6,3 +6,7 @@
 body {
     @apply min-h-dvh flex flex-col bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-white;
 }
+
+code.shiki {
+    background: transparent !important;
+}

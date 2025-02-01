@@ -1,7 +1,10 @@
 <script setup lang="ts">
 const myComponents = [
   { name: "Alert", link: "/alert" },
-  { name: "Toggle", link: "/" },
+  {
+    name: "Button",
+    link: "/button",
+  },
 ];
 </script>
 
@@ -12,7 +15,9 @@ const myComponents = [
         class="w-full flex flex-col items-center justify-center gap-2 py-4 px-6"
         :href="comp.link"
       >
-        <div class="bg-gray-500 w-full aspect-video rounded-lg"></div>
+        <div
+          class="bg-gray-500 w-full aspect-video rounded-lg flex justify-center items-center"
+        ></div>
         <p class="text-lg">{{ comp.name }}</p>
       </a>
     </div>
