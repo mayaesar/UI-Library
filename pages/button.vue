@@ -6,7 +6,7 @@ const variants = reactive({
   rounded: undefined,
 });
 
-const { color, variant, size, rounded } = toRefs(variants);
+const { color, size, rounded, variant } = toRefs(variants);
 
 const code = computed(() => {
   const attributes = Object.entries(variants)
@@ -37,26 +37,10 @@ const copyToClipboard = async () => {
   <NuxtLayout>
     <section>
       <h1 class="text-2xl">Button</h1>
-      <div class="pt-6 grid grid-cols-3 justify-center items-center">
-        <div class="group flex items-center justify-center p-6">
-          <Button color="fuchsia" size="sm" rounded="none">Button</Button>
-        </div>
-        <div class="group flex items-center justify-center p-6">
-          <Button color="green" rounded="full" variant="outlined"
-            >Button</Button
-          >
-        </div>
-        <div class="group flex items-center justify-center p-5">
-          <Button color="blue" size="lg">Button</Button>
-        </div>
-      </div>
-
       <div class="pt-6 justify-center items-center">
-        <div class="h-44 border border-gray-500 flex flex-col group">
+        <div class="h-44 border border-gray-500 flex flex-col">
           <div class="h-12">
-            <div
-              class="hidden m-2 items-center justify-end gap-2 group-hover:flex"
-            >
+            <div class="m-2 items-center justify-end gap-2 flex">
               <div class="flex-1 flex gap-2">
                 <select
                   id="colors"
@@ -65,15 +49,12 @@ const copyToClipboard = async () => {
                   class="bg-transparent"
                 >
                   <option :value="undefined" disabled selected>Color</option>
+                  <option value="white">white</option>
+                  <option value="black">black</option>
                   <option value="blue">blue</option>
                   <option value="green">green</option>
                   <option value="yellow">yellow</option>
                   <option value="red">red</option>
-                  <option value="teal">teal</option>
-                  <option value="pink">pink</option>
-                  <option value="purple">purple</option>
-                  <option value="orange">orange</option>
-                  <option value="fuchsia">fuchsia</option>
                 </select>
 
                 <select
@@ -83,8 +64,10 @@ const copyToClipboard = async () => {
                   class="bg-transparent"
                 >
                   <option :value="undefined" disabled selected>Style</option>
-                  <option value="filled">filled</option>
-                  <option value="outlined">outlined</option>
+                  <option value="solid">filled</option>
+                  <option value="outline">outlined</option>
+                  <option value="ghost">ghost</option>
+                  <option value="soft">soft</option>
                 </select>
                 <select
                   id="sizes"
@@ -93,9 +76,11 @@ const copyToClipboard = async () => {
                   class="bg-transparent"
                 >
                   <option :value="undefined" disabled selected>Size</option>
+                  <option value="xs">xs</option>
                   <option value="sm">sm</option>
                   <option value="md">md</option>
                   <option value="lg">lg</option>
+                  <option value="xl">xl</option>
                 </select>
                 <select
                   id="rounded"
@@ -105,9 +90,11 @@ const copyToClipboard = async () => {
                 >
                   <option :value="undefined" disabled selected>Rounded</option>
                   <option value="none">none</option>
+                  <option value="xs">xs</option>
                   <option value="sm">sm</option>
                   <option value="md">md</option>
                   <option value="lg">lg</option>
+                  <option value="xl">xl</option>
                   <option value="full">full</option>
                 </select>
               </div>
