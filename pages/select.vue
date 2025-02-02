@@ -36,17 +36,6 @@ const code = computed(() => {
     <Select${str ? " " + str : ""}${" " + items} />
   `;
 });
-
-const copied = ref(false);
-const copyToClipboard = async () => {
-  try {
-    await navigator.clipboard.writeText(`${code.value}`);
-    copied.value = true;
-    setTimeout(() => (copied.value = false), 2000);
-  } catch (err) {
-    console.error("Failed to copy!", err);
-  }
-};
 </script>
 
 <template>
@@ -227,16 +216,7 @@ const copyToClipboard = async () => {
           </div>
         </div>
         <div class="py-6 px-2 border border-t-transparent border-gray-500">
-          <p class="text-xl">Code</p>
-          <hr class="-mx-2 mt-2" />
-          <button class="float-end m-2" @click="copyToClipboard()">
-            <Icon v-if="copied" name="ph:check" size="24" />
-            <Icon v-else name="ph:clipboard-text" size="24" />
-          </button>
-
-          <div class="overflow-x-auto overflow-y-auto">
-            <Shiki lang="js" :code="code" />
-          </div>
+          <CodeDisplay :code="code" />
         </div>
       </div>
     </section>
