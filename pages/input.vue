@@ -142,6 +142,7 @@ const copyToClipboard = async () => {
               :size="size"
               :rounded="rounded"
               :type="type"
+              leading-icon="ph:magnifying-glass"
             />
           </div>
         </div>

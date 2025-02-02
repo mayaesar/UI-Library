@@ -6,28 +6,23 @@ const input = tv({
   variants: {
     color: {
       white: {
-        outline:
-          "ring-gray-300 dark:ring-gray-700 focus:ring-gray-500 dark:focus:ring-gray-400",
+        outline: "focus:ring-gray-500 dark:focus:ring-gray-400",
         none: "",
       },
       blue: {
-        outline:
-          "ring-blue-300 dark:ring-blue-700 focus:ring-blue-500 dark:focus:ring-blue-400",
+        outline: "focus:ring-blue-500 dark:focus:ring-blue-400",
         none: "",
       },
       green: {
-        outline:
-          "ring-green-300 dark:ring-green-700 focus:ring-green-500 dark:focus:ring-green-400",
+        outline: "focus:ring-green-500 dark:focus:ring-green-400",
         none: "",
       },
       yellow: {
-        outline:
-          "ring-yellow-300 dark:ring-yellow-700 focus:ring-yellow-500 dark:focus:ring-yellow-400",
+        outline: "focus:ring-yellow-500 dark:focus:ring-yellow-400",
         none: "",
       },
       red: {
-        outline:
-          "ring-red-300 dark:ring-red-700 focus:ring-red-500 dark:focus:ring-red-400",
+        outline: "focus:ring-red-500 dark:focus:ring-red-400",
         none: "",
       },
     },
@@ -49,7 +44,8 @@ const input = tv({
     },
     variant: {
       none: "ring-0 focus:ring-0",
-      outline: "ring-1 ring-inset focus:ring-2",
+      outline:
+        "ring-gray-300 dark:ring-gray-700 ring-1 ring-inset focus:ring-2",
     },
   },
   defaultVariants: {
@@ -60,6 +56,29 @@ const input = tv({
   },
 });
 
+const leadingIconConfig = tv({
+  base: "absolute top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none",
+  variants: {
+    size: {
+      xs: "text-xs left-2",
+      sm: "text-sm left-2.5",
+      md: "text-base left-3",
+      lg: "text-lg left-4",
+      xl: "text-xl left-5",
+    },
+    padding: {
+      xs: "pl-6",
+      sm: "pl-8",
+      md: "pl-9",
+      lg: "pl-10",
+      xl: "pl-12",
+    },
+  },
+  defaultVariants: {
+    size: "sm",
+  },
+});
+
 type Props = {
   color?: keyof (typeof input.variants)["color"];
   size?: keyof (typeof input.variants)["size"];
@@ -67,6 +86,7 @@ type Props = {
   rounded?: keyof (typeof input.variants)["rounded"];
   placeholder?: string;
   type?: string;
+  leadingIcon?: string;
 };
 
 const {
@@ -91,5 +111,18 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <input :class="cn(classes)" :placeholder="placeholder" :type="type" />
+  <div class="relative">
+    <input
+      :class="
+        cn(classes, leadingIcon ? leadingIconConfig.variants.padding[size] : '')
+      "
+      :placeholder="placeholder"
+      :type="type"
+    />
+    <Icon
+      v-if="leadingIcon"
+      :name="leadingIcon"
+      :class="cn(leadingIconConfig.base, leadingIconConfig.variants.size[size])"
+    />
+  </div>
 </template>
