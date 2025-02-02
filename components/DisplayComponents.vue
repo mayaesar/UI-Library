@@ -3,6 +3,7 @@ const myComponents = [
   { name: "Alert", link: "/alert" },
   { name: "Button", link: "/button" },
   { name: "Input", link: "/input" },
+  { name: "Select", link: "/select" },
 ];
 </script>
 

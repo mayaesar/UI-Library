@@ -5,13 +5,23 @@ const variants = reactive({
   size: undefined,
   rounded: undefined,
 });
-const other = reactive({
-  type: undefined,
-});
-
+const items =
+  ':items="[\n' +
+  "                {\n" +
+  "                  label: 'Select an option',\n" +
+  "                  value: undefined,\n" +
+  "                  disabled: true,\n" +
+  "                },\n" +
+  "                {\n" +
+  "                  label: 'Option 1',\n" +
+  "                  value: 'option1',\n" +
+  "                },\n" +
+  "                {\n" +
+  "                  label: 'Option 2',\n" +
+  "                  value: 'option2',\n" +
+  "                },\n" +
+  '              ]"';
 const { color, size, rounded, variant } = toRefs(variants);
-
-const { type } = toRefs(other);
 
 const code = computed(() => {
   const attributes = Object.entries(variants)
@@ -19,18 +29,11 @@ const code = computed(() => {
       return value ? `${key}="${value}"` : undefined;
     })
     .filter(Boolean);
-  const oAttributes = Object.entries(other)
-    .map(([key, value]) => {
-      return value ? `${key}="${value}"` : undefined;
-    })
-    .filter(Boolean);
 
   const str = attributes.join(" ");
 
-  const oStr = oAttributes.join(" ");
-
   return `
-    <Input${str ? " " + str : ""}${oStr ? " " + oStr : ""}/>
+    <Select${str ? " " + str : ""}${" " + items} />
   `;
 });
 
@@ -55,7 +58,7 @@ const copyToClipboard = async () => {
             <Icon name="ph:arrow-left-bold" size="18" />
           </Button>
         </a>
-        <h1 class="text-3xl">Input</h1>
+        <h1 class="text-3xl">Select</h1>
       </div>
 
       <div class="pt-6 justify-center items-center">
@@ -71,26 +74,12 @@ const copyToClipboard = async () => {
                 >
                   <option :value="undefined" disabled selected>Color</option>
                   <option :value="undefined">white</option>
+                  <option value="black">Black</option>
                   <option value="blue">blue</option>
                   <option value="green">green</option>
                   <option value="yellow">yellow</option>
                   <option value="red">red</option>
                 </select>
-
-                <select
-                  id="type"
-                  v-model="type"
-                  name="type"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Type</option>
-                  <option :value="undefined">text</option>
-                  <option value="date">date</option>
-                  <option value="email">email</option>
-                  <option value="file">file</option>
-                  <option value="number">number</option>
-                </select>
-
                 <select
                   id="variants"
                   v-model="variant"
@@ -101,7 +90,6 @@ const copyToClipboard = async () => {
                   <option value="none">none</option>
                   <option :value="undefined">outlined</option>
                 </select>
-
                 <select
                   id="sizes"
                   v-model="size"
@@ -115,7 +103,6 @@ const copyToClipboard = async () => {
                   <option value="lg">lg</option>
                   <option value="xl">xl</option>
                 </select>
-
                 <select
                   id="rounded"
                   v-model="rounded"
@@ -136,13 +123,26 @@ const copyToClipboard = async () => {
             </div>
           </div>
           <div class="flex justify-center py-8 px-8">
-            <Input
+            <Select
               :color="color"
               :variant="variant"
               :size="size"
               :rounded="rounded"
-              :type="type"
-              leading-icon="ph:magnifying-glass"
+              :items="[
+                {
+                  label: 'Select an option',
+                  value: undefined,
+                  disabled: true,
+                },
+                {
+                  label: 'Option 1',
+                  value: 'option1',
+                },
+                {
+                  label: 'Option 2',
+                  value: 'option2',
+                },
+              ]"
             />
           </div>
         </div>
