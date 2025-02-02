@@ -8,6 +8,8 @@ const variants = reactive({
 
 const { color, size, rounded, variant } = toRefs(variants);
 
+const isIcon = computed(() => size.value === "icon");
+
 const code = computed(() => {
   const attributes = Object.entries(variants)
     .map(([key, value]) => {
@@ -16,7 +18,11 @@ const code = computed(() => {
     .filter(Boolean);
 
   const str = attributes.join(" ");
-
+  if (isIcon.value) {
+    return `
+    <Button${str ? " " + str : ""}><Icon name="ph:lego-smiley" /></Button>
+  `;
+  }
   return `
     <Button${str ? " " + str : ""}>Select your style</Button>
   `;
@@ -81,6 +87,7 @@ const copyToClipboard = async () => {
                   <option value="md">md</option>
                   <option value="lg">lg</option>
                   <option value="xl">xl</option>
+                  <option value="icon">icon</option>
                 </select>
                 <select
                   id="rounded"
@@ -103,6 +110,16 @@ const copyToClipboard = async () => {
           </div>
           <div class="flex justify-center py-8">
             <Button
+              v-if="isIcon"
+              :color="color"
+              :variant="variant"
+              :size="size"
+              :rounded="rounded"
+            >
+              <Icon name="ph:lego-smiley-bold" size="18" />
+            </Button>
+            <Button
+              v-else
               :color="color"
               :variant="variant"
               :size="size"

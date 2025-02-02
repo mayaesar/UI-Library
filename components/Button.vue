@@ -2,7 +2,7 @@
 import { tv } from "tailwind-variants";
 
 const button = tv({
-  base: "text-black dark:text-white rounded-full hover:opacity-70 drop-shadow",
+  base: "text-black dark:text-white rounded-full hover:opacity-70 drop-shadow flex items-center justify-center",
   variants: {
     color: {
       white: {
@@ -53,6 +53,7 @@ const button = tv({
       md: "text-base py-3 px-4",
       lg: "text-lg py-4 px-5",
       xl: "text-xl py-5 px-6",
+      icon: "h-9 w-9",
     },
     rounded: {
       none: "rounded-none",
