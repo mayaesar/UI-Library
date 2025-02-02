@@ -56,62 +56,152 @@ const copyToClipboard = async () => {
           <div class="h-12">
             <div class="m-2 items-center justify-end gap-2 flex">
               <div class="flex-1 flex gap-2">
-                <select
-                  id="colors"
+                <Select
+                  id="color"
                   v-model="color"
-                  name="colors"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Color</option>
-                  <option value="white">white</option>
-                  <option value="black">black</option>
-                  <option value="blue">blue</option>
-                  <option value="green">green</option>
-                  <option value="yellow">yellow</option>
-                  <option value="red">red</option>
-                </select>
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a color',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'white',
+                      value: 'white',
+                    },
+                    {
+                      label: 'black',
+                      value: 'black',
+                    },
+                    {
+                      label: 'blue',
+                      value: undefined,
+                    },
+                    {
+                      label: 'green',
+                      value: 'green',
+                    },
+                    {
+                      label: 'yellow',
+                      value: 'yellow',
+                    },
+                    {
+                      label: 'red',
+                      value: 'red',
+                    },
+                  ]"
+                />
 
-                <select
-                  id="variants"
+                <Select
+                  id="variant"
                   v-model="variant"
-                  name="variants"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Style</option>
-                  <option value="solid">filled</option>
-                  <option value="outline">outlined</option>
-                  <option value="ghost">ghost</option>
-                  <option value="soft">soft</option>
-                </select>
-                <select
-                  id="sizes"
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a style',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'solid',
+                      value: undefined,
+                    },
+                    {
+                      label: 'outline',
+                      value: 'outline',
+                    },
+                    {
+                      label: 'ghost',
+                      value: 'ghost',
+                    },
+                    {
+                      label: 'soft',
+                      value: 'soft',
+                    },
+                  ]"
+                />
+                <Select
+                  id="size"
                   v-model="size"
-                  name="sizes"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Size</option>
-                  <option value="xs">xs</option>
-                  <option value="sm">sm</option>
-                  <option value="md">md</option>
-                  <option value="lg">lg</option>
-                  <option value="xl">xl</option>
-                  <option value="icon">icon</option>
-                </select>
-                <select
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a size',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'xs',
+                      value: 'xs',
+                    },
+                    {
+                      label: 'sm',
+                      value: 'sm',
+                    },
+                    {
+                      label: 'md',
+                      value: undefined,
+                    },
+                    {
+                      label: 'lg',
+                      value: 'lg',
+                    },
+                    {
+                      label: 'xl',
+                      value: 'xl',
+                    },
+                    {
+                      label: 'icon',
+                      value: 'icon',
+                    },
+                  ]"
+                />
+
+                <Select
                   id="rounded"
                   v-model="rounded"
-                  name="rounded"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Rounded</option>
-                  <option value="none">none</option>
-                  <option value="xs">xs</option>
-                  <option value="sm">sm</option>
-                  <option value="md">md</option>
-                  <option value="lg">lg</option>
-                  <option value="xl">xl</option>
-                  <option value="full">full</option>
-                </select>
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a radius',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'none',
+                      value: 'none',
+                    },
+                    {
+                      label: 'xs',
+                      value: 'xs',
+                    },
+                    {
+                      label: 'sm',
+                      value: 'sm',
+                    },
+                    {
+                      label: 'md',
+                      value: undefined,
+                    },
+                    {
+                      label: 'lg',
+                      value: 'lg',
+                    },
+                    {
+                      label: 'xl',
+                      value: 'xl',
+                    },
+                    {
+                      label: 'full',
+                      value: 'full',
+                    },
+                  ]"
+                />
               </div>
               <Icon name="ph:github-logo" class="size-6" />
             </div>

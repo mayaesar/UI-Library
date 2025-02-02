@@ -63,74 +63,167 @@ const copyToClipboard = async () => {
           <div class="h-12">
             <div class="m-2 items-center justify-end gap-2 flex">
               <div class="flex-1 flex gap-2">
-                <select
-                  id="colors"
+                <Select
+                  id="color"
                   v-model="color"
-                  name="colors"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Color</option>
-                  <option :value="undefined">white</option>
-                  <option value="blue">blue</option>
-                  <option value="green">green</option>
-                  <option value="yellow">yellow</option>
-                  <option value="red">red</option>
-                </select>
-
-                <select
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a color',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'white',
+                      value: undefined,
+                    },
+                    {
+                      label: 'blue',
+                      value: 'blue',
+                    },
+                    {
+                      label: 'green',
+                      value: 'green',
+                    },
+                    {
+                      label: 'yellow',
+                      value: 'yellow',
+                    },
+                    {
+                      label: 'red',
+                      value: 'red',
+                    },
+                  ]"
+                />
+                <Select
                   id="type"
                   v-model="type"
-                  name="type"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Type</option>
-                  <option :value="undefined">text</option>
-                  <option value="date">date</option>
-                  <option value="email">email</option>
-                  <option value="file">file</option>
-                  <option value="number">number</option>
-                </select>
-
-                <select
-                  id="variants"
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a type',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'text',
+                      value: undefined,
+                    },
+                    {
+                      label: 'date',
+                      value: 'date',
+                    },
+                    {
+                      label: 'email',
+                      value: 'email',
+                    },
+                    {
+                      label: 'file',
+                      value: 'file',
+                    },
+                    {
+                      label: 'number',
+                      value: 'number',
+                    },
+                  ]"
+                />
+                <Select
+                  id="variant"
                   v-model="variant"
-                  name="variants"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Style</option>
-                  <option value="none">none</option>
-                  <option :value="undefined">outlined</option>
-                </select>
-
-                <select
-                  id="sizes"
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a style',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'outline',
+                      value: undefined,
+                    },
+                    {
+                      label: 'none',
+                      value: 'none',
+                    },
+                  ]"
+                />
+                <Select
+                  id="size"
                   v-model="size"
-                  name="sizes"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Size</option>
-                  <option value="xs">xs</option>
-                  <option :value="undefined">sm</option>
-                  <option value="md">md</option>
-                  <option value="lg">lg</option>
-                  <option value="xl">xl</option>
-                </select>
-
-                <select
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a size',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'xs',
+                      value: 'xs',
+                    },
+                    {
+                      label: 'sm',
+                      value: undefined,
+                    },
+                    {
+                      label: 'md',
+                      value: 'md',
+                    },
+                    {
+                      label: 'lg',
+                      value: 'lg',
+                    },
+                    {
+                      label: 'xl',
+                      value: 'xl',
+                    },
+                  ]"
+                />
+                <Select
                   id="rounded"
                   v-model="rounded"
-                  name="rounded"
-                  class="bg-transparent"
-                >
-                  <option :value="undefined" disabled selected>Rounded</option>
-                  <option value="none">none</option>
-                  <option value="xs">xs</option>
-                  <option value="sm">sm</option>
-                  <option :value="undefined">md</option>
-                  <option value="lg">lg</option>
-                  <option value="xl">xl</option>
-                  <option value="full">full</option>
-                </select>
+                  color="black"
+                  variant="none"
+                  :items="[
+                    {
+                      label: 'Select a radius',
+                      value: undefined,
+                      disabled: true,
+                    },
+                    {
+                      label: 'none',
+                      value: 'none',
+                    },
+                    {
+                      label: 'xs',
+                      value: 'xs',
+                    },
+                    {
+                      label: 'sm',
+                      value: 'sm',
+                    },
+                    {
+                      label: 'md',
+                      value: undefined,
+                    },
+                    {
+                      label: 'lg',
+                      value: 'lg',
+                    },
+                    {
+                      label: 'xl',
+                      value: 'xl',
+                    },
+                    {
+                      label: 'full',
+                      value: 'full',
+                    },
+                  ]"
+                />
               </div>
               <Icon name="ph:github-logo" class="size-6" />
             </div>
