@@ -1,26 +1,32 @@
 <script setup lang="ts">
-const prefersDarkMode = ref(false);
+const prefersDarkMode = ref(true);
+const theme = useCookie<"light" | "dark">("theme");
+
+useHead({
+  htmlAttrs: {
+    class: theme.value === "dark" ? "dark" : undefined,
+  },
+});
 
 onMounted(() => {
   prefersDarkMode.value = window.matchMedia(
     "(prefers-color-scheme: dark)",
   ).matches;
 
-  if (prefersDarkMode.value) {
-    document.documentElement.classList.add("dark");
+  if (!theme.value) {
+    theme.value = prefersDarkMode.value ? "dark" : "light";
   }
+
+  document.documentElement.classList.toggle("dark", theme.value === "dark");
 });
 
 const handleThemeChange = () => {
-  prefersDarkMode.value = !prefersDarkMode.value;
-  if (prefersDarkMode.value) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
+  theme.value = theme.value === "light" ? "dark" : "light";
+  document.documentElement.classList.toggle("dark", theme.value === "dark");
 };
+
 const buttonDisplay = computed(() => {
-  return prefersDarkMode.value ? "ph:sun" : "ph:moon";
+  return theme.value ? "ph:sun" : "ph:moon";
 });
 </script>
 
