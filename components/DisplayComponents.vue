@@ -1,10 +1,8 @@
 <script setup lang="ts">
 const myComponents = [
   { name: "Alert", link: "/alert" },
-  {
-    name: "Button",
-    link: "/button",
-  },
+  { name: "Button", link: "/button" },
+  { name: "Input", link: "/input" },
 ];
 </script>
 

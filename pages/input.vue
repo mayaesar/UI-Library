@@ -5,10 +5,13 @@ const variants = reactive({
   size: undefined,
   rounded: undefined,
 });
+const other = reactive({
+  type: undefined,
+});
 
 const { color, size, rounded, variant } = toRefs(variants);
 
-const isIcon = computed(() => size.value === "icon");
+const { type } = toRefs(other);
 
 const code = computed(() => {
   const attributes = Object.entries(variants)
@@ -16,17 +19,21 @@ const code = computed(() => {
       return value ? `${key}="${value}"` : undefined;
     })
     .filter(Boolean);
+  const oAttributes = Object.entries(other)
+    .map(([key, value]) => {
+      return value ? `${key}="${value}"` : undefined;
+    })
+    .filter(Boolean);
 
   const str = attributes.join(" ");
-  if (isIcon.value) {
-    return `
-    <Button${str ? " " + str : ""}><Icon name="ph:lego-smiley" /></Button>
-  `;
-  }
+
+  const oStr = oAttributes.join(" ");
+
   return `
-    <Button${str ? " " + str : ""}>Select your style</Button>
+    <Input${str ? " " + str : ""}${oStr ? " " + oStr : ""}/>
   `;
 });
+
 const copied = ref(false);
 const copyToClipboard = async () => {
   try {
@@ -48,7 +55,7 @@ const copyToClipboard = async () => {
             <Icon name="ph:arrow-left-bold" size="18" />
           </Button>
         </a>
-        <h1 class="text-3xl">Button</h1>
+        <h1 class="text-3xl">Input</h1>
       </div>
 
       <div class="pt-6 justify-center items-center">
@@ -63,12 +70,25 @@ const copyToClipboard = async () => {
                   class="bg-transparent"
                 >
                   <option :value="undefined" disabled selected>Color</option>
-                  <option value="white">white</option>
-                  <option value="black">black</option>
+                  <option :value="undefined">white</option>
                   <option value="blue">blue</option>
                   <option value="green">green</option>
                   <option value="yellow">yellow</option>
                   <option value="red">red</option>
+                </select>
+
+                <select
+                  id="type"
+                  v-model="type"
+                  name="type"
+                  class="bg-transparent"
+                >
+                  <option :value="undefined" disabled selected>Type</option>
+                  <option :value="undefined">text</option>
+                  <option value="date">date</option>
+                  <option value="email">email</option>
+                  <option value="file">file</option>
+                  <option value="number">number</option>
                 </select>
 
                 <select
@@ -78,11 +98,10 @@ const copyToClipboard = async () => {
                   class="bg-transparent"
                 >
                   <option :value="undefined" disabled selected>Style</option>
-                  <option value="solid">filled</option>
+                  <option value="none">none</option>
                   <option value="outline">outlined</option>
-                  <option value="ghost">ghost</option>
-                  <option value="soft">soft</option>
                 </select>
+
                 <select
                   id="sizes"
                   v-model="size"
@@ -91,12 +110,12 @@ const copyToClipboard = async () => {
                 >
                   <option :value="undefined" disabled selected>Size</option>
                   <option value="xs">xs</option>
-                  <option value="sm">sm</option>
+                  <option :value="undefined">sm</option>
                   <option value="md">md</option>
                   <option value="lg">lg</option>
                   <option value="xl">xl</option>
-                  <option value="icon">icon</option>
                 </select>
+
                 <select
                   id="rounded"
                   v-model="rounded"
@@ -107,7 +126,7 @@ const copyToClipboard = async () => {
                   <option value="none">none</option>
                   <option value="xs">xs</option>
                   <option value="sm">sm</option>
-                  <option value="md">md</option>
+                  <option :value="undefined">md</option>
                   <option value="lg">lg</option>
                   <option value="xl">xl</option>
                   <option value="full">full</option>
@@ -116,25 +135,14 @@ const copyToClipboard = async () => {
               <Icon name="ph:github-logo" class="size-6" />
             </div>
           </div>
-          <div class="flex justify-center py-8">
-            <Button
-              v-if="isIcon"
+          <div class="flex justify-center py-8 px-8">
+            <Input
               :color="color"
               :variant="variant"
               :size="size"
               :rounded="rounded"
-            >
-              <Icon name="ph:lego-smiley-bold" size="18" />
-            </Button>
-            <Button
-              v-else
-              :color="color"
-              :variant="variant"
-              :size="size"
-              :rounded="rounded"
-            >
-              Select your style
-            </Button>
+              :type="type"
+            />
           </div>
         </div>
         <div class="py-6 px-2 border border-t-transparent border-gray-500">
